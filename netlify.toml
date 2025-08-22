@@ -1,6 +1,8 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  [build.environment]
+    VITE_ADMIN_PIN = "121234"
 
 # Optional: functions directory (already set in Netlify UI). Keep for consistency.
 functions = "netlify/functions"
