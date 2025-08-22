@@ -15,6 +15,10 @@ export default function InstallPWA({ className = '' }) {
   }, [])
 
   const onInstall = async () => {
+    // If already installed, just ignore prompt
+    try {
+      if (localStorage.getItem('nahati_installed') === '1') return
+    } catch {}
     if (!deferredPrompt) return
     deferredPrompt.prompt()
     const { outcome } = await deferredPrompt.userChoice

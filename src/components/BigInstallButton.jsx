@@ -20,6 +20,13 @@ export default function BigInstallButton({ className = '' }) {
   const onClick = async () => {
     setLoading(true)
     try {
+      // If already installed, attempt to open app (opening current site suffices for PWA)
+      const installed = typeof localStorage !== 'undefined' && localStorage.getItem('nahati_installed') === '1'
+      if (installed) {
+        // In a typical scenario, this would open the app; here we navigate home or no-op
+        window.location.href = '/'
+        return
+      }
       if (isIOS) {
         navigate('/install/iphone')
         return

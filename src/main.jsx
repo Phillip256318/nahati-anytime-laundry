@@ -14,7 +14,15 @@ function PWAUpdater() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const updateSW = registerSW({
+    // Mark installed when running in standalone (iOS/Android) or when the install event fires
+    const markInstalled = () => {
+      try { localStorage.setItem('nahati_installed', '1') } catch {}
+    }
+    const isStandalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches
+    const isIOSStandalone = typeof navigator !== 'undefined' && 'standalone' in navigator && navigator.standalone
+    if (isStandalone || isIOSStandalone) markInstalled()
+    window.addEventListener('appinstalled', markInstalled)
+  const updateSW = registerSW({
       immediate: true,
       onNeedRefresh() {
         setNeedRefresh(true)
@@ -26,6 +34,7 @@ function PWAUpdater() {
       },
     })
     updateSWFn = updateSW
+  return () => window.removeEventListener('appinstalled', markInstalled)
   }, [])
 
   const doRefresh = () => {
