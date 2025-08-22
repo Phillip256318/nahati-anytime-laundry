@@ -1,10 +1,12 @@
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { usePWAInstall } from '../hooks/usePWAInstall'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const location = useLocation()
+  const { canInstall, install } = usePWAInstall()
 
   useEffect(() => {
     setOpen(false)
@@ -32,6 +34,7 @@ export default function Navbar() {
           <NavLink to="/booking" className={navLinkClass}>Booking</NavLink>
           <NavLink to="/learn" className={navLinkClass}>Learn</NavLink>
           <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+          {canInstall && <button onClick={install} className="px-3 py-2 rounded-md text-sm font-medium text-gray-700 hover:text-brand">Install</button>}
           <Link to="/booking" className="btn-primary ml-2">Schedule Pickup</Link>
         </div>
       </motion.nav>
@@ -43,6 +46,7 @@ export default function Navbar() {
             <NavLink to="/booking" className={navLinkClass}>Booking</NavLink>
             <NavLink to="/learn" className={navLinkClass}>Learn</NavLink>
             <NavLink to="/contact" className={navLinkClass}>Contact</NavLink>
+            {canInstall && <button onClick={install} className="mt-2 px-3 py-2 rounded-md text-sm font-medium text-gray-700 text-left hover:text-brand">Install</button>}
             <Link to="/booking" className="btn-primary mt-2">Schedule Pickup</Link>
           </div>
         </div>

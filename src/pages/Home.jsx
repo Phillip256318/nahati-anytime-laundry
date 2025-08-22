@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ServiceCard from '../components/ServiceCard'
 import { SERVICES } from '../utils/constants'
+import InstallPWA from '../components/InstallPWA'
 
 export default function Home() {
   const coreNames = new Set(['Ordinary Service', 'Normal Service', 'Express Service'])
@@ -34,6 +35,7 @@ export default function Home() {
       </section>
 
       <section className="container-max py-12">
+  <InstallPWA className="mb-6" />
         <h2 className="text-2xl font-bold">Our Services</h2>
 
         {/* Core Services (match Services page styling) */}

@@ -10,6 +10,7 @@ import Learn from './pages/Blog'
 import BlogDetail from './pages/BlogDetail'
 import Contact from './pages/Contact'
 import AdminInvoice from './pages/AdminInvoice'
+import InstallOnIPhone from './pages/InstallOnIPhone'
 
 const pageVariants = {
   initial: { opacity: 0, y: 10 },
@@ -45,6 +46,7 @@ export default function App() {
             <Route path="/learn" element={<PageWrapper><Learn /></PageWrapper>} />
             <Route path="/learn/:id" element={<PageWrapper><BlogDetail /></PageWrapper>} />
             <Route path="/contact" element={<PageWrapper><Contact /></PageWrapper>} />
+            <Route path="/install/iphone" element={<PageWrapper><InstallOnIPhone /></PageWrapper>} />
             <Route path="/admin/invoice" element={<PageWrapper><AdminInvoice /></PageWrapper>} />
             <Route path="*" element={<PageWrapper><Home /></PageWrapper>} />
           </Routes>
