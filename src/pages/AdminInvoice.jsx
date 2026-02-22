@@ -3,12 +3,7 @@ import dayjs from 'dayjs'
 import { createInvoicePdf, invoiceFileName, generateInvoiceNumber } from '../utils/invoice'
 import { submitInvoiceToGoogleForms } from '../utils/googleFormsInvoices'
 
-const ADMIN_PIN = import.meta.env.VITE_ADMIN_PIN || '0000'
-
 export default function AdminInvoice() {
-  const [pinInput, setPinInput] = useState('')
-  const [authed, setAuthed] = useState(false)
-
   // Customer details
   const [clientName, setClientName] = useState('')
   const [clientPhone, setClientPhone] = useState('')
@@ -109,29 +104,6 @@ export default function AdminInvoice() {
     } finally {
       setSaving(false)
     }
-  }
-
-  if (!authed) {
-    return (
-      <div className="container-max py-16">
-        <div className="max-w-sm mx-auto card">
-          <h1 className="text-xl font-bold">Admin Access</h1>
-          <p className="text-sm text-gray-700 mt-2">Enter PIN to manage invoices.</p>
-          <div className="mt-4 flex gap-2">
-            <input
-              type="password"
-              placeholder="PIN"
-              className="w-full rounded-md border px-3 py-2"
-              value={pinInput}
-              onChange={e => setPinInput(e.target.value)}
-              onKeyDown={e => e.key === 'Enter' && pinInput === ADMIN_PIN && setAuthed(true)}
-            />
-            <button className="btn-primary" onClick={() => pinInput === ADMIN_PIN && setAuthed(true)}>Unlock</button>
-          </div>
-          <p className="text-xs text-gray-500 mt-2">Tip: Set VITE_ADMIN_PIN in Netlify env.</p>
-        </div>
-      </div>
-    )
   }
 
   return (
