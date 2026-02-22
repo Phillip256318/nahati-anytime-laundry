@@ -54,7 +54,7 @@ function PWAUpdater() {
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/nahati-anytime-laundry">
   <PWAUpdater />
       <App />
     </BrowserRouter>

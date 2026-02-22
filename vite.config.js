@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/nahati-anytime-laundry/',
   plugins: [
     react(),
     VitePWA({
@@ -17,16 +18,16 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait',
-        scope: '/',
-        start_url: '/',
+        scope: '/nahati-anytime-laundry/',
+        start_url: '/nahati-anytime-laundry/',
         icons: [
-          { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
-          { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
-          { src: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png', purpose: 'any' }
+          { src: '/nahati-anytime-laundry/android-chrome-192x192.png', sizes: '192x192', type: 'image/png' },
+          { src: '/nahati-anytime-laundry/android-chrome-512x512.png', sizes: '512x512', type: 'image/png' },
+          { src: '/nahati-anytime-laundry/apple-touch-icon.png', sizes: '180x180', type: 'image/png', purpose: 'any' }
         ]
       },
       workbox: {
-        navigateFallback: '/index.html',
+        navigateFallback: '/nahati-anytime-laundry/index.html',
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'image',
@@ -34,7 +35,7 @@ export default defineConfig({
             options: { cacheName: 'images-cache', expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 * 30 } }
           },
           {
-            urlPattern: ({ url }) => url.pathname.startsWith('/'),
+            urlPattern: ({ url }) => url.pathname.startsWith('/nahati-anytime-laundry/'),
             handler: 'StaleWhileRevalidate',
             options: { cacheName: 'app-cache' }
           }
